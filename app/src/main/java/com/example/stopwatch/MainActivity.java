@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         textViewTimer = findViewById(R.id.textViewTimer);
+        runTimer();
     }
 
     public void onClickStartTimer(View view) {
