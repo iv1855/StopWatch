@@ -15,12 +15,27 @@ public class MainActivity extends AppCompatActivity {
     private TextView textViewTimer;
     private int seconds = 0;
     private boolean isRunning = false;
+    private boolean wasRunning = false;
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt("seconds", seconds);
         outState.putBoolean("isRunning", isRunning);
+        outState.putBoolean("wasRunning", wasRunning);
+    }
+
+        @Override
+    protected void onPause() {
+        super.onPause();
+        wasRunning = isRunning;
+        isRunning = false;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        isRunning = wasRunning;
     }
 
     @Override
@@ -31,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState != null) {
             seconds = savedInstanceState.getInt("seconds");
             isRunning = savedInstanceState.getBoolean("isRunning");
+            wasRunning = savedInstanceState.getBoolean("wasRunning");
         }
         runTimer();
     }
