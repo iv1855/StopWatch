@@ -30,12 +30,16 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
         wasRunning = isRunning;
         isRunning = false;
+
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         isRunning = wasRunning;
+
+
     }
 
     @Override
